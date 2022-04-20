@@ -14,6 +14,10 @@ variable "hub-name" {
     type = string
 }
 
+variable "vm-name" {
+    type = string
+}
+
 variable "hub-address-space" {
     type = string
     description = "Address space for virtual network"
