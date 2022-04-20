@@ -1,3 +1,5 @@
+
+//=================== Hub Networking ===================
 resource "azurerm_virtual_network" "hub-vnet" {
   name                = "${var.hub-name}-network"
   address_space       = [var.hub-address-space]
@@ -14,10 +16,13 @@ resource "azurerm_subnet" "hub-subnet" {
   address_prefixes     = [var.hub-address-prefixes]
 }
 
+
+//======================= Hub VM =======================
 resource "azurerm_network_interface" "hub-vm-nic" {
-  name                = "${var.vm-name}-nic"
+  name                = "${var.hub-name}-nic"
   location            = var.location
   resource_group_name = var.rg_name
+  enable_ip_forwarding      = true
 
   ip_configuration {
     name                          = "testconfiguration1"
@@ -27,7 +32,7 @@ resource "azurerm_network_interface" "hub-vm-nic" {
 }
 
 resource "azurerm_virtual_machine" "hub-vm" {
-  name                  = "${var.vm-name}-vm"
+  name                  = "${var.hub-name}-vm"
   location              = var.location
   resource_group_name   = var.rg_name
   network_interface_ids = [azurerm_network_interface.hub-vm-nic.id]

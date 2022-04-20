@@ -18,12 +18,22 @@ variable "spoke-name" {
     type = string
 }
 
-variable "spoke-address-space" {
+variable "spoke1-address-space" {
     type = string
     description = "Address space for virtual network"
 }
 
-variable "spoke-address-prefixes" {
+variable "spoke1-address-prefixes" {
+    type = string
+    description = "Address prefixes for azure subnet"
+}
+
+variable "spoke2-address-space" {
+    type = string
+    description = "Address space for virtual network"
+}
+
+variable "spoke2-address-prefixes" {
     type = string
     description = "Address prefixes for azure subnet"
 }
